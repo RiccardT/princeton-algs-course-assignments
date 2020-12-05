@@ -3,39 +3,44 @@ from week_0.union_find.test_resources.functionality_test_data import functionali
 
 
 def union_find_client(n: int, queries: list) -> list:
-    union_find: UnionFind = UnionFind(n)
+    """
+    O(N + queries*N) -> O(queries*N) -> O(N*2) for N union commands on N entries
+    """
+    union_find: UnionFind = UnionFind(n)  # O(N)
     results: list = []
-    for query in queries:
+    for query in queries:  # O(queries * N)
         if query[0] == "union":
-            results.append(union_find.union(query[1], query[2]))
+            results.append(union_find.union(query[1], query[2]))  # O(N)
         elif query[0] == "connected":
-            results.append(union_find.connected(query[1], query[2]))
+            results.append(union_find.connected(query[1], query[2]))  # O(1)
     return results
 
 
 class UnionFind:
 
     def __init__(self, entries: int):
-        self.ids: list = [id for id in range(entries)]
+        self.ids: list = [id for id in range(entries)]  # O(N)
 
-    def connected(self, p: int, q: int) -> bool:
-        print(f"connected({p}, {q})")
-        print(self.ids[p] == self.ids[q])
+    def connected(self, p: int, q: int) -> bool:  # O(1)
+        self.log_connected_state(p, q)
         return self.ids[p] == self.ids[q]
 
-    def union(self, p: int, q: int) -> None:
+    def union(self, p: int, q: int) -> None:   # O(N)
         p_id: int = self.ids[p]
         q_id: int = self.ids[q]
-        entries_that_match_p: list = []
         for entry, id in enumerate(self.ids):
             if id == p_id:
-                entries_that_match_p.append(entry)
-        for entry in entries_that_match_p:
-            self.ids[entry] = q_id
+                self.ids[entry] = q_id
+        self.log_union_state(p, q)
+
+    def log_union_state(self, p: int, q: int):
         print(f"union({p}, {q})")
         print([index for index in range(len(self.ids))])
         print(self.ids)
-        print(entries_that_match_p)
+
+    def log_connected_state(self, p: int, q: int):
+        print(f"connected({p}, {q})")
+        print(self.ids[p] == self.ids[q])
 
 
 if __name__ == '__main__':
