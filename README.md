@@ -3,7 +3,7 @@ Princeton Algorithms and Data Structures Course Assignments
 Description
 -----------
 This is my repository of solutions to the assignments of the Coursera 
-Princeton Algorithms and Data Structures Course on Coursera, the link to which
+Princeton Algorithms and Data Structures Course, the link to which
 can be found [here](https://www.coursera.org/learn/algorithms-part1).
 Within here is also my custom dynamic test suite generator written for another 
 solution repo I have. If you want to use it, see installations instructions below:
