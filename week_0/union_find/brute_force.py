@@ -22,7 +22,7 @@ class UnionFind:
         self.ids: list = [id for id in range(entries)]  # O(N)
 
     def connected(self, p: int, q: int) -> bool:  # O(1)
-        self.log_connected_state(p, q)
+        self.__log_connected_state(p, q)
         return self.ids[p] == self.ids[q]
 
     def union(self, p: int, q: int) -> None:   # O(N)
@@ -31,14 +31,14 @@ class UnionFind:
         for entry, id in enumerate(self.ids):
             if id == p_id:
                 self.ids[entry] = q_id
-        self.log_union_state(p, q)
+        self.__log_union_state(p, q)
 
-    def log_union_state(self, p: int, q: int):
+    def __log_union_state(self, p: int, q: int):
         print(f"union({p}, {q})")
         print([index for index in range(len(self.ids))])
         print(self.ids)
 
-    def log_connected_state(self, p: int, q: int):
+    def __log_connected_state(self, p: int, q: int):
         print(f"connected({p}, {q})")
         print(self.ids[p] == self.ids[q])
 

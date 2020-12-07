@@ -31,12 +31,12 @@ class UnionFind:
             node = self.roots[node]
         return node
 
-    def log_union_state(self, p: int, q: int):
+    def __log_union_state(self, p: int, q: int):
         print(f"union({p}, {q})")
         print([index for index in range(len(self.roots))])
         print(self.roots)
 
-    def log_connected_state(self, p: int, q: int):
+    def __log_connected_state(self, p: int, q: int):
         print(f"connected({p}, {q})")
         print(self.roots[p] == self.roots[q])
 
