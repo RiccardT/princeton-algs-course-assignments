@@ -3,6 +3,12 @@ from week_0.union_find.test_resources.functionality_test_data import functionali
 
 
 def union_find_client(n: int, queries: list) -> list:
+    """
+    - Total Time Complexity:
+        O(number_of_unions*n + number_of_connecteds*n) -> O(n[unions + connecteds])
+        ~= O(n^2) for n connecteds and/or union queries
+    - This occurs at worst when we have large, skinny trees, where depth of the tree is n nodes
+    """
     union_find: UnionFind = UnionFind(n)
     results: list = []
     for query in queries:
@@ -15,18 +21,18 @@ def union_find_client(n: int, queries: list) -> list:
 
 class UnionFind:
 
-    def __init__(self, number_of_nodes: int):
+    def __init__(self, number_of_nodes: int):  # O(n)
         self.roots: list = [i for i in range(number_of_nodes)]
 
-    def connected(self, p: int, q: int) -> bool:
+    def connected(self, p: int, q: int) -> bool:  # O(n)
         return self.__get_root(p) == self.__get_root(q)
 
-    def union(self, p: int, q: int) -> None:
+    def union(self, p: int, q: int) -> None:  # O(n)
         root_of_p: int = self.__get_root(p)
         root_of_q: int = self.__get_root(q)
         self.roots[root_of_p] = root_of_q
 
-    def __get_root(self, node: int):
+    def __get_root(self, node: int):  # O(n)
         while node != self.roots[node]:
             node = self.roots[node]
         return node
