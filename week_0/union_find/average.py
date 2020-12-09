@@ -1,5 +1,5 @@
 from test_utilities.dynamic_test_creator import run_dynamic_tests, dynamically_generate_tests
-from week_0.union_find.test_resources.functionality_test_data import functionality_test_data
+from week_0.union_find.test_resources.union_find_functionality_test_data import union_find_functionality_test_data
 
 
 def union_find_client(n: int, queries: list) -> list:
@@ -48,5 +48,5 @@ class UnionFind:
 
 
 if __name__ == '__main__':
-    dynamically_generate_tests(functionality_test_data, union_find_client)
+    dynamically_generate_tests(union_find_functionality_test_data, union_find_client)
     run_dynamic_tests()

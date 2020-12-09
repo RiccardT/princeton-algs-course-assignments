@@ -1,6 +1,6 @@
 
 
-functionality_test_data: dict = {
+union_find_functionality_test_data: dict = {
     "test_0": {
         "params": {
             "n": 10,
