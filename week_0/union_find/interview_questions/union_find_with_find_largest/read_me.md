@@ -8,3 +8,9 @@ For example, if one of the connected components is {1,2,6,9}, then the
 find() method should return 99 for each of the four elements in the 
 connected components.
 
+Solution
+---------
+maintain an extra array to the weighted quick-union data structure 
+that stores for each root {i} the largest element in the connected 
+component containing i.
+
