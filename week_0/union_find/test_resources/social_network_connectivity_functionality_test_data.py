@@ -11,6 +11,17 @@ social_network_connectivity_functionality_test_data: dict = {
             ],
             "friends": 4
         },
+        "expected": -1
+    },
+    "test_1": {
+        "params": {
+            "connections": [
+                Connection(3, 1, 0),
+                Connection(2, 0, 1),
+                Connection(2, 3, 2),
+            ],
+            "friends": 4
+        },
         "expected": 2
     }
 }

@@ -35,7 +35,7 @@ class BalancedUnionFind:
     def union(self, p: int, q: int) -> None:   # O(log(n))
         root_of_p: int = self.__get_root(p)  # O(log(n))
         root_of_q: int = self.__get_root(q)  # O(log(n))
-        if p == q:
+        if root_of_p == root_of_q:
             return
         if self.tree_sizes[root_of_p] < self.tree_sizes[root_of_q]:  # O(1)
             self.roots[root_of_p] = root_of_q
