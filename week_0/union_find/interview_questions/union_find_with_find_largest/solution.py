@@ -10,7 +10,7 @@ def union_find_client(n: int, queries: list) -> list:
     that stores for each root {i} the largest element in the connected
     component containing i, called largest[i]
     """
-    union_find: UnionFind = UnionFind(n)
+    union_find: UnionFindWithFindLargest = UnionFindWithFindLargest(n)
     results: list = []
     for query in queries:
         if query[0] == "union":
@@ -22,7 +22,7 @@ def union_find_client(n: int, queries: list) -> list:
     return results
 
 
-class UnionFind:
+class UnionFindWithFindLargest:
 
     def __init__(self, number_of_nodes: int):
         self.roots: list = [i for i in range(number_of_nodes)]  # O(n)
