@@ -44,8 +44,9 @@ class FacebookFriendConnector:
 
     def __log_union_state(self, p: int, q: int):
         print(f"union({p}, {q})")
-        print([index for index in range(len(self.roots))])
-        print(self.roots)
+        print(f"Index: {[index for index in range(len(self.roots))]}")
+        print(f"Roots: {self.roots}")
+        print(f"Tree Sizes: {self.tree_sizes}")
 
     def __log_connected_state(self, p: int, q: int):
         print(f"connected({p}, {q})")
