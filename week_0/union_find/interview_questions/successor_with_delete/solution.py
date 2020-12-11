@@ -9,7 +9,7 @@ def successor_with_delete_client(n: int, queries: list) -> list:
     - remove(x)
         This corresponds to union(x, x + 1)
     - successor(x)
-        this corresponds to getting the unweighted_roots[get_root(x + 1)]
+        this corresponds to getting the successor_roots[get_root(x + 1)]
     """
     union_find_with_successor_and_delete: UnionFindWithRemoveAndSuccessor = UnionFindWithRemoveAndSuccessor(n)
     results: list = []
@@ -26,13 +26,13 @@ class UnionFindWithRemoveAndSuccessor:
     def __init__(self, number_of_nodes: int):
         self.roots: list = [i for i in range(number_of_nodes)]  # O(n)
         self.tree_sizes: list = [1 for _ in range(number_of_nodes)]  # O(n)
-        self.unweighted_roots: list = [i for i in range(number_of_nodes)]  # O(n)
+        self.successor_roots: list = [i for i in range(number_of_nodes)]  # O(n)
 
     def remove(self, x: int):
         self.__union(x, x + 1)
 
     def successor(self, x: int):
-        return self.unweighted_roots[self.__get_root(x + 1)]
+        return self.successor_roots[self.__get_root(x + 1)]
 
     def __connected(self, p: int, q: int) -> bool:  # O(log(n))
         return self.__get_root(p) == self.__get_root(q)
@@ -49,7 +49,7 @@ class UnionFindWithRemoveAndSuccessor:
             self.roots[root_of_q] = root_of_p
             self.tree_sizes[root_of_p] += self.tree_sizes[root_of_p]
 
-            self.unweighted_roots[root_of_p] = self.unweighted_roots[root_of_q]  # Successor mod
+            self.successor_roots[root_of_p] = self.successor_roots[root_of_q]  # Successor mod
 
     def __get_root(self, node: int):  # O(log(n))
         while node != self.roots[node]:
@@ -65,7 +65,6 @@ class UnionFindWithRemoveAndSuccessor:
         print(f"Index: {[index for index in range(len(self.roots))]}")
         print(f"Roots: {self.roots}")
         print(f"Tree Sizes: {self.tree_sizes}")
-        print(f"Largest: {self.largest}")
 
     def __log_connected_state(self, p: int, q: int):
         print(f"connected({p}, {q})")
