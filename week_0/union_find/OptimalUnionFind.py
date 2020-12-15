@@ -13,7 +13,7 @@ def union_find_client(n: int, queries: list) -> list:
         of union and find to log(n)*, which in practice is ~= 5, essentially a constant factor!
         Therefore, we can amortize the runtime to be: O(n + queries)
     """
-    balanced_union_find: BalancedUnionFind = BalancedUnionFind(n)
+    balanced_union_find: OptimalUnionFind = OptimalUnionFind(n)
     results: list = []
     for query in queries:
         if query[0] == "union":
@@ -23,7 +23,7 @@ def union_find_client(n: int, queries: list) -> list:
     return results
 
 
-class BalancedUnionFind:
+class OptimalUnionFind:
 
     def __init__(self, number_of_nodes: int):
         self.roots: list = [i for i in range(number_of_nodes)]  # O(n)

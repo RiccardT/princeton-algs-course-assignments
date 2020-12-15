@@ -6,7 +6,7 @@ def union_find_client(n: int, queries: list) -> list:
     """
     O(N + queries*N) -> O(queries*N) -> O(N*2) for N union commands on N entries
     """
-    union_find: UnionFind = UnionFind(n)  # O(N)
+    union_find: BruteForceUnionFind = BruteForceUnionFind(n)  # O(N)
     results: list = []
     for query in queries:  # O(queries * N)
         if query[0] == "union":
@@ -16,7 +16,7 @@ def union_find_client(n: int, queries: list) -> list:
     return results
 
 
-class UnionFind:
+class BruteForceUnionFind:
 
     def __init__(self, entries: int):
         self.ids: list = [id for id in range(entries)]  # O(N)

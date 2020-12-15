@@ -9,7 +9,7 @@ def union_find_client(n: int, queries: list) -> list:
         ~= O(n^2) for n connecteds and/or union queries
     - This occurs at worst when we have large, skinny trees, where depth of the tree is n nodes
     """
-    union_find: UnionFind = UnionFind(n)
+    union_find: AverageUnionFind = AverageUnionFind(n)
     results: list = []
     for query in queries:
         if query[0] == "union":
@@ -19,7 +19,7 @@ def union_find_client(n: int, queries: list) -> list:
     return results
 
 
-class UnionFind:
+class AverageUnionFind:
 
     def __init__(self, number_of_nodes: int):  # O(n)
         self.roots: list = [i for i in range(number_of_nodes)]
