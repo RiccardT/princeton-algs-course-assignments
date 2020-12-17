@@ -9,7 +9,7 @@ class TestPercolation(TestCase):
         n: int = 4
         percolation: Percolation = Percolation(n)
         expected: int = n**2 + 2
-        actual: int = len(percolation.union_find.roots)
+        actual: int = len(percolation.__union_find.roots)
         self.assertEqual(expected, actual)
 
     def test_open(self):
