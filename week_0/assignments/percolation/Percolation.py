@@ -19,6 +19,7 @@ class Percolation(PercolationInterface):
         self.__number_of_open_sites: int = 0
 
     def open(self, row: int, col: int):
+        self.__validate_inputs(row, col)
         u_f_node: int = self.__get_associated_u_f_node(row, col)
         self.__opened[u_f_node] = True
         neighbor_u_f_nodes: List[int] = self.__get_neighbor_u_f_nodes(u_f_node)
@@ -26,6 +27,12 @@ class Percolation(PercolationInterface):
             if self.__opened[neighbor_node]:
                 self.__union_find.union(u_f_node, neighbor_node)
         self.__number_of_open_sites += 1
+
+    def __validate_inputs(self, row: int, col: int):
+        if row < 0 or row >= self.__n:
+            raise Exception(f'Input of row:{row} out of range, row must be between 0 and {self.__n}')
+        elif col < 0 or col >= self.__n:
+            raise Exception(f'Input of col:{col} out of range, col must be between 0 and {self.__n}')
 
     def __get_associated_u_f_node(self, row: int, col: int) -> int:
         return row * self.__n + col
@@ -43,10 +50,12 @@ class Percolation(PercolationInterface):
         return actual_neighbors
 
     def is_open(self, row: int, col: int) -> bool:
+        self.__validate_inputs(row, col)
         u_f_node: int = self.__get_associated_u_f_node(row, col)
         return self.__opened[u_f_node]
 
     def is_full(self, row: int, col: int) -> bool:
+        self.__validate_inputs(row, col)
         u_f_node: int = self.__get_associated_u_f_node(row, col)
         return self.__opened[u_f_node] and self.__union_find.connected(self.__top_virtual_site, u_f_node)
 
