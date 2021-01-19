@@ -1,12 +1,18 @@
 from test_utilities.dynamic_test_creator import dynamically_generate_tests, run_dynamic_tests
 
 
-def brute_force(bitonic_array: list, value: int) -> bool:
-    print(get_bitonic_inflection_index_with_bs(bitonic_array))
+def brute_force(bitonic_array: list, value: int) -> bool:  # ~3Log(n)
+    inflection_point: int = get_bitonic_inflection_index_with_bs(bitonic_array)
+    left_side_search_value: int = find_value_reg_bs(bitonic_array[:inflection_point], value)
+    if left_side_search_value != -1:
+        return True
+    right_side_search_value: int = find_value_reverse_bs(bitonic_array[inflection_point:], value)
+    if right_side_search_value != -1:
+        return True
     return False
 
 
-def get_bitonic_inflection_index_with_bs(arr: list) -> int:  # O(log(n), working
+def get_bitonic_inflection_index_with_bs(arr: list) -> int:  # O(log(n)
     begin: int = 0
     end: int = len(arr) - 1
     mid: int = 0
@@ -17,6 +23,36 @@ def get_bitonic_inflection_index_with_bs(arr: list) -> int:  # O(log(n), working
         elif (arr[mid - 1] > arr[mid]) and (arr[mid] > arr[mid + 1]):  # Inside decreasing sequence
             end = mid - 1
         elif (arr[mid - 1] < arr[mid]) and (arr[mid] > arr[mid + 1]):  # Found inflection
+            return mid
+    return -1
+
+
+def find_value_reg_bs(arr: list, value: int) -> int:  # O(log(n)
+    begin: int = 0
+    end: int = len(arr) - 1
+    mid: int = 0
+    while begin <= end:
+        mid = (begin + end) // 2
+        if value > arr[mid]:
+            begin = mid + 1
+        elif value < arr[mid]:
+            end = mid - 1
+        else:
+            return mid
+    return -1
+
+
+def find_value_reverse_bs(arr: list, value: int) -> int:  # O(log(n)
+    begin: int = 0
+    end: int = len(arr) - 1
+    mid: int = 0
+    while begin <= end:
+        mid = (begin + end) // 2
+        if value < arr[mid]:
+            begin = mid + 1
+        elif value > arr[mid]:
+            end = mid - 1
+        else:
             return mid
     return -1
 
