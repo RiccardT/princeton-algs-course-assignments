@@ -12,6 +12,38 @@ def brute_force(bitonic_array: list, value: int) -> bool:  # ~3Log(n)
     return False
 
 
+def optimal(bitonic_array: list, value: int) -> bool:
+    return bitonic_search(bitonic_array, value)
+
+
+def bitonic_search(bitonic_arr: list, value: int) -> bool:
+    if len(bitonic_arr) == 0:  # Base Case 0
+        return False
+    middle_index: int = len(bitonic_arr) // 2
+    left_index, right_index = middle_index - 1, middle_index + 1
+    middle_value: int = bitonic_arr[middle_index]
+    if middle_value == value:  # Base Case 1
+        return True
+    elif len(bitonic_arr) == 1:  # Base Case 2
+        return False
+    if left_index < 0 or right_index >= len(bitonic_arr):
+        return False
+    left_value: int = bitonic_arr[left_index]
+    right_value: int = bitonic_arr[right_index]
+    if (left_value > middle_value > right_value) and (value > middle_value):
+        return bitonic_search(bitonic_arr[:middle_index], value)
+    elif (left_value < middle_value < right_value) and (value > middle_value):
+        return bitonic_search(bitonic_arr[middle_index:], value)
+    elif value < middle_value:
+        left_search_value: int = find_value_reg_bs(bitonic_arr[:middle_index], value)
+        if left_search_value != -1:
+            return True
+        right_search_value: int = find_value_reverse_bs(bitonic_arr[middle_index:], value)
+        if right_search_value != -1:
+            return True
+        return False
+
+
 def get_bitonic_inflection_index_with_bs(arr: list) -> int:  # O(log(n)
     begin: int = 0
     end: int = len(arr) - 1
@@ -72,7 +104,21 @@ if __name__ == '__main__':
                 "value": 30
             },
             "expected": False
+        },
+        "test_2": {
+            "params": {
+                "bitonic_array": [1, 2, 3, 1],
+                "value": 2
+            },
+            "expected": True
+        },
+        "test_3": {
+            "params": {
+                "bitonic_array": [23, 24, 69, 100, 99, 79, 78, 67, 36, 26, 19],
+                "value": 67
+            },
+            "expected": True
         }
     }
-    dynamically_generate_tests(functionality_test_data, brute_force, timed=True)
+    dynamically_generate_tests(functionality_test_data, optimal, timed=True)
     run_dynamic_tests()
