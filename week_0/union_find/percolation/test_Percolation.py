@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from week_0.assignments.percolation.Percolation import Percolation
+from week_0.union_find.percolation.Percolation import Percolation
 
 
 class TestPercolation(TestCase):

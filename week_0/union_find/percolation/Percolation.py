@@ -1,6 +1,6 @@
 from typing import List
 
-from week_0.assignments.percolation.interfaces.PercolationInterface import PercolationInterface
+from week_0.union_find.percolation.interfaces.PercolationInterface import PercolationInterface
 from week_0.union_find.OptimalUnionFind import OptimalUnionFind
 
 

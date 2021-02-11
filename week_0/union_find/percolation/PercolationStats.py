@@ -1,9 +1,9 @@
 import random
 from math import sqrt
-from typing import List, Set, Tuple
+from typing import List
 
-from week_0.assignments.percolation.interfaces.PercolationStatsInterface import PercolationStatsInterface
-from week_0.assignments.percolation.Percolation import Percolation
+from week_0.union_find.percolation.interfaces.PercolationStatsInterface import PercolationStatsInterface
+from week_0.union_find.percolation.Percolation import Percolation
 
 
 class PercolationStats(PercolationStatsInterface):
