@@ -12,12 +12,12 @@ class LinkedListStack(StackInterface):
         self.first = None
 
     def push(self, item) -> None:
-        old_first = self.first
+        old_first: LinkedListStack.Node = self.first
         first = self.Node(item)
         first.next = old_first
 
     def pop(self):
-        item = self.first.item
+        item: LinkedListStack.Node = self.first.item
         self.first = self.first.next
         return item
 
@@ -26,7 +26,7 @@ class LinkedListStack(StackInterface):
 
     def size(self) -> int:
         count: int = 0
-        traveler = self.first
+        traveler: LinkedListStack.Node = self.first
         while next is not None:
             traveler = traveler.next
             count += 1
