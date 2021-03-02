@@ -12,6 +12,18 @@ class LinkedListQueue(QueueInterface):
     def __init__(self):
         self.first = None
         self.last = None
+        self.current = self.first
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if not self.current:
+            raise StopIteration
+        else:
+            item = self.current.item
+            self.current = self.current.next
+            return item
 
     def enqueue(self, element: Any) -> None:
         old_last: LinkedListQueue.Node = self.last
@@ -19,6 +31,7 @@ class LinkedListQueue(QueueInterface):
         self.last.next = None
         if self.is_empty():
             self.first = self.last
+            self.current = self.first
         else:
             old_last.next = self.last
 

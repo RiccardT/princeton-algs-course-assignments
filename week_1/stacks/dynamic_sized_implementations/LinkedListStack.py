@@ -10,11 +10,24 @@ class LinkedListStack(StackInterface):
 
     def __init__(self):
         self.first = None
+        self.current = None
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if not self.current:
+            raise StopIteration
+        else:
+            item = self.current.item
+            self.current = self.current.next
+            return item
 
     def push(self, item) -> None:
         old_first: LinkedListStack.Node = self.first
-        first = self.Node(item)
-        first.next = old_first
+        self.first = self.Node(item)
+        self.first.next = old_first
+        self.current = self.first
 
     def pop(self):
         item: LinkedListStack.Node = self.first.item
