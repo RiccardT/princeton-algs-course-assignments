@@ -1,6 +1,6 @@
 
 
-def insertion_sort(arr: list) -> None:
+def selection_sort(arr: list) -> None:
     n: int = len(arr)
     for i in range(n):
         min_index: int = i
@@ -21,5 +21,5 @@ def exchange(arr: list, i: int, j: int) -> None:
 if __name__ == '__main__':
     arr = [1, 2, 4, 2, 0, 5, 6]
     print(arr)
-    insertion_sort(arr)
+    selection_sort(arr)
     print(arr)
