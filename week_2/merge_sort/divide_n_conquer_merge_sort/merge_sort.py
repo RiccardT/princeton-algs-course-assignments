@@ -1,4 +1,4 @@
-from week_2.merge import merge
+from week_2.merge_sort.merge import merge
 
 
 def sort(arr: list):
